@@ -5,6 +5,7 @@ import { useAuth } from "@/lib/auth-context";
 import { api } from "@/lib/api";
 import { AuthModal } from "@/components/auth-modal";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
+import { ReportFeedback } from "@/components/report-feedback";
 
 export const Route = createFileRoute("/reports")({
   head: () => ({
@@ -162,6 +163,9 @@ export function ReportsPage() {
             <div className="mt-6">
               <MarkdownRenderer content={selectedReport.report} />
             </div>
+
+            {/* Interactive Feedback */}
+            <ReportFeedback reportId={selectedReport._id} />
 
             {selectedReport.sources && selectedReport.sources.length > 0 && (
               <div className="mt-8 border-t border-border/60 pt-6">

@@ -23,10 +23,10 @@ const stack = [
 ];
 
 const team = [
-  { name: "A. Iyer", role: "Founder & CEO" },
-  { name: "R. Kapoor", role: "Head of AI Research" },
-  { name: "S. Menon", role: "Head of Engineering" },
-  { name: "N. Verma", role: "Product Design" },
+  { name: "Tripti", role: "AI/ML" },
+  { name: "Junaid", role: "Full Stack" },
+  { name: "Arya", role: "Frontend" },
+  { name: "Anand", role: "UI/UX" },
 ];
 
 function About() {

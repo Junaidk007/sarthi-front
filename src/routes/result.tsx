@@ -3,6 +3,7 @@ import {
   CheckCircle2, Download, Copy, Share2, ShieldCheck, ExternalLink,
   Send, Sparkles, ArrowRight, Network, ScanSearch, Brain, FileText,
 } from "lucide-react";
+import { ReportFeedback } from "@/components/report-feedback";
 
 export const Route = createFileRoute("/result")({
   head: () => ({
@@ -119,6 +120,9 @@ function Result() {
               ))}
             </div>
           </Section>
+
+          {/* Interactive Report Feedback Review */}
+          <ReportFeedback />
 
           {/* Sources */}
           <Section title="Sources">

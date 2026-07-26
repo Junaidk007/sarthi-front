@@ -8,6 +8,7 @@ import { useAuth } from "@/lib/auth-context";
 import { api } from "@/lib/api";
 import { AuthModal } from "@/components/auth-modal";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
+import { ReportFeedback } from "@/components/report-feedback";
 
 export const Route = createFileRoute("/search")({
   head: () => ({
@@ -200,6 +201,9 @@ export function SearchPage() {
               <div className="mt-6">
                 <MarkdownRenderer content={resultReport.report} />
               </div>
+
+              {/* Interactive Like / Dislike Review Section */}
+              <ReportFeedback reportId={resultReport._id} />
 
               {resultReport.sources && resultReport.sources.length > 0 && (
                 <div className="mt-8 border-t border-border/60 pt-6">
