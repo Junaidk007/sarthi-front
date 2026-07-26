@@ -7,6 +7,7 @@ import {
 import { useAuth } from "@/lib/auth-context";
 import { api } from "@/lib/api";
 import { AuthModal } from "@/components/auth-modal";
+import { MarkdownRenderer } from "@/components/markdown-renderer";
 
 export const Route = createFileRoute("/search")({
   head: () => ({
@@ -196,8 +197,8 @@ export function SearchPage() {
                 </button>
               </div>
 
-              <div className="mt-6 whitespace-pre-wrap font-sans text-sm leading-relaxed text-foreground/90">
-                {resultReport.report}
+              <div className="mt-6">
+                <MarkdownRenderer content={resultReport.report} />
               </div>
 
               {resultReport.sources && resultReport.sources.length > 0 && (
