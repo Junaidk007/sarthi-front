@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { api } from "@/lib/api";
 import {
   Search, Sparkles, ArrowRight, Brain, Network, ShieldCheck, FileText,
   Layers, Users, ScanSearch, BookOpen, ArrowDown, CheckCircle2,
@@ -51,6 +52,16 @@ const features = [
 
 function Landing() {
   const [q, setQ] = useState("");
+
+    useEffect(() => {
+    const health = async () => {
+      const data = api.get("/health");
+      const micro = await fetch('https://sarthi-ai-tnx-agents.onrender.com/')
+      console.log(data, micro);
+    }
+    health();
+  }, [])
+
   return (
     <main>
       {/* Hero */}
