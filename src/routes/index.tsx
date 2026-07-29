@@ -53,11 +53,14 @@ const features = [
 function Landing() {
   const [q, setQ] = useState("");
 
-    useEffect(() => {
+  useEffect(() => {
     const health = async () => {
-      const data = api.get("/health");
       const micro = await fetch('https://sarthi-ai-tnx-agents.onrender.com/')
-      console.log(data, micro);
+      const data = await api.get("/health");
+      console.log({
+        micro: await micro.json(),
+        data: data
+      });
     }
     health();
   }, [])
