@@ -63,7 +63,7 @@ function About() {
           A modular pipeline where each agent has a single responsibility. Retrieval is hybrid (vector + keyword),
           reasoning is auditable, and every generated claim is tied to a source with a trust score.
         </p>
-        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+        <div className="mt-6 grid gap-3 grid-cols-1 sm:grid-cols-3">
           {[
             { t: "Retrieval Layer", d: "RAG + web + private KB" },
             { t: "Reasoning Layer", d: "Multi-agent coordination" },
@@ -85,7 +85,7 @@ function About() {
           </div>
           <div className="mt-5 divide-y divide-border/60">
             {stack.map((s) => (
-              <div key={s.k} className="grid grid-cols-[140px_1fr] gap-4 py-3 text-sm">
+              <div key={s.k} className="grid grid-cols-1 sm:grid-cols-[130px_1fr] gap-1 sm:gap-4 py-3 text-sm">
                 <div className="font-semibold text-brand-700">{s.k}</div>
                 <div className="text-muted-foreground">{s.v}</div>
               </div>
@@ -98,7 +98,7 @@ function About() {
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-gradient text-white"><Users className="h-4 w-4" /></span>
             <h2 className="font-display text-xl font-bold">Team</h2>
           </div>
-          <div className="mt-5 grid grid-cols-2 gap-4">
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {team.map((m) => (
               <div key={m.name} className="rounded-2xl border border-border/70 bg-white p-4">
                 <div className="grid h-10 w-10 place-items-center rounded-full bg-soft-gradient font-semibold text-brand-700">
@@ -112,7 +112,7 @@ function About() {
         </div>
       </section>
 
-      <section className="mt-10 rounded-3xl bg-brand-gradient p-10 text-center text-white shadow-glow">
+      <section className="mt-10 rounded-3xl bg-brand-gradient p-6 sm:p-10 text-center text-white shadow-glow">
         <div className="mx-auto max-w-2xl">
           <h2 className="font-display text-3xl font-bold sm:text-4xl">Our Mission</h2>
           <p className="mt-3 text-white/90">

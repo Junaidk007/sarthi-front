@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
+import { useAuth } from "@/lib/auth-context";
 import {
   Search, Sparkles, ArrowRight, Brain, Network, ShieldCheck, FileText,
   Layers, Users, ScanSearch, BookOpen, ArrowDown, CheckCircle2,
@@ -51,6 +52,8 @@ const features = [
 ];
 
 function Landing() {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   const [q, setQ] = useState("");
 
   useEffect(() => {
@@ -73,43 +76,25 @@ function Landing() {
           <div className="absolute left-1/2 top-[-10%] h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-brand-100/50 blur-3xl" />
           <div className="absolute right-[-10%] top-40 h-[320px] w-[320px] rounded-full bg-brand-200/40 blur-3xl" />
         </div>
-        <div className="mx-auto max-w-7xl px-4 pt-16 pb-10 sm:px-6 lg:px-8 lg:pt-24">
+        <div className="mx-auto max-w-7xl px-4 pt-16 pb-10 sm:px-6 lg:px-8 lg:pt-20">
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/70 bg-white/80 px-3 py-1 text-xs font-medium text-brand-700 shadow-soft">
               <Sparkles className="h-3.5 w-3.5" /> Introducing Multi-Agent Intelligence
             </div>
-            <h1 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="font-display text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl">
               AI-Powered <span className="text-gradient">Knowledge Retrieval</span> &
               <br className="hidden sm:block" /> Multi-Agent Intelligence
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+            <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground">
               Transform fragmented information into structured insights using AI agents,
               semantic search, reasoning, and automated report generation.
             </p>
 
-            {/* Search bar */}
-            <form
-              onSubmit={(e) => { e.preventDefault(); window.location.href = "/processing"; }}
-              className="mx-auto mt-10 flex max-w-3xl items-center gap-2 rounded-2xl border border-border/70 bg-white/90 p-2 shadow-glow"
-            >
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-600">
-                <Search className="h-5 w-5" />
-              </div>
-              <input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="Search anything..."
-                className="min-w-0 flex-1 bg-transparent px-2 py-3 text-base outline-none placeholder:text-muted-foreground"
-              />
-              <button
-                type="submit"
-                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-brand-gradient px-5 py-3 text-sm font-semibold text-white shadow-glow hover:opacity-95"
-              >
-                Analyze <ArrowRight className="h-4 w-4" />
-              </button>
-            </form>
 
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            {/* Search bar */}
+            {/*  */}
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
               {suggestions.map((s) => (
                 <button
                   key={s}
@@ -130,10 +115,10 @@ function Landing() {
           </div> */}
 
           {/* Stats */}
-          <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-16 grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4">
             {stats.map((s) => (
-              <div key={s.label} className="rounded-2xl border border-border/70 bg-white/80 p-6 text-center shadow-soft">
-                <div className="font-display text-3xl font-bold text-gradient">{s.value}</div>
+              <div key={s.label} className="rounded-2xl border border-border/70 bg-white/80 p-4 sm:p-6 text-center shadow-soft">
+                <div className="font-display text-2xl sm:text-3xl font-bold text-gradient">{s.value}</div>
                 <div className="mt-1 text-xs font-medium text-muted-foreground">{s.label}</div>
               </div>
             ))}
@@ -142,7 +127,7 @@ function Landing() {
       </section>
 
       {/* How it works */}
-      <section id="workflow" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <section id="workflow" className="mx-auto max-w-7xl px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold text-brand-600">How it works</p>
           <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">A coordinated pipeline of AI agents</h2>
@@ -150,7 +135,7 @@ function Landing() {
             From your question to a verified, structured report — orchestrated by specialized agents.
           </p>
         </div>
-        <div className="mt-14 grid gap-4 md:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-14 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {workflow.map((w, i) => (
             <div key={w.title} className="relative rounded-2xl border border-border/70 bg-white/80 p-5 shadow-soft">
               <div className="mb-3 grid h-10 w-10 place-items-center rounded-xl bg-soft-gradient text-brand-700">
@@ -185,8 +170,8 @@ function Landing() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-10 text-center shadow-glow sm:p-16">
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:py-20 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-6 sm:p-16 text-center shadow-glow">
           <div className="pointer-events-none absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(600px 200px at 20% 0%, rgba(255,255,255,.5), transparent), radial-gradient(500px 200px at 80% 100%, rgba(255,255,255,.35), transparent)" }} />
           <h2 className="relative font-display text-3xl font-bold text-white sm:text-5xl">Start searching with intelligence.</h2>
           <p className="relative mx-auto mt-4 max-w-xl text-white/85">Ask any question and let coordinated agents deliver a structured, cited report.</p>

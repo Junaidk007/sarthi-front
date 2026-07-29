@@ -111,21 +111,23 @@ export function SearchPage() {
 
             <form
               onSubmit={handleSearchSubmit}
-              className="mx-auto mt-8 flex items-center gap-2 rounded-2xl border border-border/70 bg-white/90 p-2 shadow-glow"
+              className="mx-auto mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 rounded-2xl border border-border/70 bg-white/90 p-2 shadow-glow"
             >
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-600">
-                <SearchIcon className="h-5 w-5" />
+              <div className="flex min-w-0 flex-1 items-center gap-2 px-2 py-1">
+                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600">
+                  <SearchIcon className="h-4 w-4" />
+                </div>
+                <input
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  placeholder="Ask anything in natural language..."
+                  className="min-w-0 flex-1 bg-transparent py-2 text-base outline-none"
+                />
               </div>
-              <input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="Ask anything in natural language..."
-                className="min-w-0 flex-1 bg-transparent px-2 py-3 text-base outline-none"
-              />
               <button
                 type="submit"
                 disabled={loading || !q.trim()}
-                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-brand-gradient px-5 py-3 text-sm font-semibold text-white shadow-glow disabled:opacity-50"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand-gradient px-5 py-3 text-sm font-semibold text-white shadow-glow disabled:opacity-50"
               >
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Search <ArrowRight className="h-4 w-4" /></>}
               </button>
@@ -134,13 +136,13 @@ export function SearchPage() {
 
           {/* Progress Indicator */}
           {loading && (
-            <div className="mt-8 rounded-2xl border border-brand-200 bg-white p-6 shadow-glow text-center animate-in fade-in duration-300">
+            <div className="mt-8 rounded-2xl border border-brand-200 bg-white p-4 sm:p-6 shadow-glow text-center animate-in fade-in duration-300">
               <div className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
                 <Sparkles className="h-4 w-4 animate-spin text-brand-600" />
                 Agents working in parallel...
               </div>
               <h4 className="mt-3 text-lg font-bold">Executing Multi-Agent Pipeline</h4>
-              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
                 {steps.map((step, idx) => {
                   const stepNum = idx + 1;
                   const isDone = progressStep > stepNum;
@@ -182,8 +184,8 @@ export function SearchPage() {
 
           {/* Result Display */}
           {resultReport && (
-            <div className="mt-8 rounded-3xl border border-border/80 bg-white p-6 shadow-glow sm:p-8 animate-in fade-in duration-300">
-              <div className="flex items-center justify-between border-b border-border/60 pb-4">
+            <div className="mt-8 rounded-3xl border border-border/80 bg-white p-4 sm:p-8 shadow-glow animate-in fade-in duration-300">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-border/60 pb-4">
                 <div>
                   <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
                     {resultReport.taskType?.toUpperCase() || "RESEARCH"} REPORT
@@ -192,7 +194,7 @@ export function SearchPage() {
                 </div>
                 <button
                   onClick={() => window.print()}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-secondary/50 px-3.5 py-2 text-xs font-semibold hover:bg-secondary"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-border bg-secondary/50 px-3.5 py-2 text-xs font-semibold hover:bg-secondary shrink-0"
                 >
                   <Download className="h-3.5 w-3.5" /> PDF
                 </button>
@@ -248,9 +250,9 @@ export function SearchPage() {
 
           {/* How AI works */}
           {!resultReport && !loading && (
-            <div className="mt-14 rounded-3xl border border-border/70 bg-white/80 p-8 shadow-soft">
+            <div className="mt-14 rounded-3xl border border-border/70 bg-white/80 p-6 sm:p-8 shadow-soft">
               <h3 className="font-display text-xl font-bold">How AI works</h3>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-6 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                 {steps.map((s, i) => (
                   <div key={s.title} className="relative rounded-2xl border border-border/70 bg-white p-5 shadow-soft">
                     <div className="absolute -top-3 left-5 rounded-full bg-brand-gradient px-2.5 py-0.5 text-[10px] font-bold text-white">Step {i + 1}</div>

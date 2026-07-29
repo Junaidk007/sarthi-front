@@ -70,11 +70,11 @@ function Result() {
               <ShieldCheck className="h-3.5 w-3.5" /> Confidence {confidence}%
             </div>
           </div>
-          <div className="flex shrink-0 gap-2">
-            <button className="inline-flex items-center gap-2 rounded-xl border border-border bg-white px-4 py-2.5 text-sm font-medium hover:bg-secondary">
+          <div className="flex shrink-0 flex-wrap sm:flex-nowrap gap-2">
+            <button className="inline-flex flex-1 sm:flex-none items-center justify-center gap-2 rounded-xl border border-border bg-white px-4 py-2.5 text-sm font-medium hover:bg-secondary">
               <Copy className="h-4 w-4" /> Copy
             </button>
-            <button className="inline-flex items-center gap-2 rounded-xl bg-brand-gradient px-4 py-2.5 text-sm font-semibold text-white shadow-glow">
+            <button className="inline-flex flex-1 sm:flex-none items-center justify-center gap-2 rounded-xl bg-brand-gradient px-4 py-2.5 text-sm font-semibold text-white shadow-glow">
               <Download className="h-4 w-4" /> Generate PDF
             </button>
           </div>
@@ -110,7 +110,7 @@ function Result() {
 
           {/* Recommendations */}
           <Section title="Recommendations">
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="grid gap-3 grid-cols-1 sm:grid-cols-3">
               {recs.map((r) => (
                 <div key={r.title} className="rounded-2xl border border-border/70 bg-white p-4">
                   <span className={`inline-flex rounded-full border px-2 py-0.5 text-[10px] font-bold ${priorityStyle[r.p]}`}>{r.p} priority</span>
@@ -126,8 +126,8 @@ function Result() {
 
           {/* Sources */}
           <Section title="Sources">
-            <div className="overflow-hidden rounded-2xl border border-border/70">
-              <table className="w-full text-sm">
+            <div className="overflow-x-auto rounded-2xl border border-border/70">
+              <table className="w-full min-w-[500px] text-sm">
                 <thead className="bg-secondary/70 text-xs uppercase tracking-wide text-muted-foreground">
                   <tr>
                     <th className="px-4 py-3 text-left font-semibold">Source</th>
@@ -166,9 +166,9 @@ function Result() {
 
           {/* Follow-up */}
           <Section title="Ask a follow-up">
-            <form className="flex items-center gap-2 rounded-2xl border border-border/70 bg-white p-2">
+            <form className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 rounded-2xl border border-border/70 bg-white p-2">
               <input placeholder="Ask a follow-up question about this report…" className="min-w-0 flex-1 bg-transparent px-3 py-2.5 text-sm outline-none" />
-              <button className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-brand-gradient px-4 py-2.5 text-sm font-semibold text-white">
+              <button className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand-gradient px-4 py-2.5 text-sm font-semibold text-white">
                 <Send className="h-4 w-4" /> Ask
               </button>
             </form>

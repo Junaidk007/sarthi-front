@@ -143,18 +143,18 @@ export function ReportsPage() {
 
       {/* Selected Report Modal */}
       {selectedReport && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-          <div className="relative max-h-[85vh] w-full max-w-3xl overflow-y-auto rounded-3xl border border-border bg-background p-6 shadow-2xl sm:p-8">
-            <div className="flex items-center justify-between border-b border-border/60 pb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3 sm:p-4 backdrop-blur-sm">
+          <div className="relative max-h-[88vh] w-full max-w-3xl overflow-y-auto rounded-3xl border border-border bg-background p-4 sm:p-8 shadow-2xl">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-border/60 pb-4">
               <div>
                 <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
                   {selectedReport.taskType?.toUpperCase() || "RESEARCH"} REPORT
                 </span>
-                <h2 className="mt-2 text-2xl font-bold">{selectedReport.query}</h2>
+                <h2 className="mt-2 text-xl font-bold sm:text-2xl">{selectedReport.query}</h2>
               </div>
               <button
                 onClick={() => setSelectedReport(null)}
-                className="rounded-full border border-border px-3 py-1.5 text-xs font-semibold hover:bg-secondary"
+                className="self-end sm:self-auto rounded-full border border-border px-3 py-1.5 text-xs font-semibold hover:bg-secondary"
               >
                 Close
               </button>
