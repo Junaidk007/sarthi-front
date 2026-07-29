@@ -9,6 +9,7 @@ import { api } from "@/lib/api";
 import { AuthModal } from "@/components/auth-modal";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { ReportFeedback } from "@/components/report-feedback";
+import { ReportResources } from "@/components/report-resources";
 
 export const Route = createFileRoute("/search")({
   head: () => ({
@@ -207,25 +208,12 @@ export function SearchPage() {
               {/* Interactive Like / Dislike Review Section */}
               <ReportFeedback reportId={resultReport._id} />
 
-              {resultReport.sources && resultReport.sources.length > 0 && (
-                <div className="mt-8 border-t border-border/60 pt-6">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Verified Sources & Citations</h4>
-                  <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                    {resultReport.sources.map((src: any, idx: number) => (
-                      <a
-                        key={idx}
-                        href={src.url || "#"}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-between rounded-xl border border-border/60 bg-secondary/30 p-3 text-xs font-medium transition-colors hover:bg-secondary hover:text-brand-600"
-                      >
-                        <span className="truncate pr-2">{src.title || src.url}</span>
-                        <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {/* Resources & Links at the end of report */}
+              <ReportResources
+                resources={resultReport.resources}
+                sources={resultReport.sources}
+                reportContent={resultReport.report}
+              />
             </div>
           )}
 

@@ -4,6 +4,7 @@ import {
   Send, Sparkles, ArrowRight, Network, ScanSearch, Brain, FileText,
 } from "lucide-react";
 import { ReportFeedback } from "@/components/report-feedback";
+import { ReportResources } from "@/components/report-resources";
 
 export const Route = createFileRoute("/result")({
   head: () => ({
@@ -31,12 +32,12 @@ const recs = [
 ];
 
 const sources = [
-  { name: "MeitY — Digital India Act draft", cat: "Government", verified: true },
-  { name: "NASSCOM — AI Policy Landscape 2026", cat: "Industry", verified: true },
-  { name: "EU AI Act — Official Text", cat: "Government", verified: true },
-  { name: "Stanford HAI — Global AI Index", cat: "Research", verified: true },
-  { name: "OECD.AI — Country Dashboard", cat: "Research", verified: true },
-  { name: "Reuters — Policy coverage", cat: "Web", verified: false },
+  { name: "MeitY — Digital India Act draft", cat: "Government", verified: true, url: "https://meity.gov.in/digital-india-act" },
+  { name: "NASSCOM — AI Policy Landscape 2026", cat: "Industry", verified: true, url: "https://nasscom.in/ai-policy-2026" },
+  { name: "EU AI Act — Official Text", cat: "Government", verified: true, url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" },
+  { name: "Stanford HAI — Global AI Index", cat: "Research", verified: true, url: "https://hai.stanford.edu/ai-index-2026" },
+  { name: "OECD.AI — Country Dashboard", cat: "Research", verified: true, url: "https://oecd.ai/en/dashboards" },
+  { name: "Reuters — Policy coverage", cat: "Web", verified: false, url: "https://reuters.com/technology/ai-regulations-2026" },
 ];
 
 const workflow = [
@@ -124,45 +125,8 @@ function Result() {
           {/* Interactive Report Feedback Review */}
           <ReportFeedback />
 
-          {/* Sources */}
-          <Section title="Sources">
-            <div className="overflow-x-auto rounded-2xl border border-border/70">
-              <table className="w-full min-w-[500px] text-sm">
-                <thead className="bg-secondary/70 text-xs uppercase tracking-wide text-muted-foreground">
-                  <tr>
-                    <th className="px-4 py-3 text-left font-semibold">Source</th>
-                    <th className="px-4 py-3 text-left font-semibold">Category</th>
-                    <th className="px-4 py-3 text-left font-semibold">Verified</th>
-                    <th className="px-4 py-3 text-right font-semibold">Link</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sources.map((s) => (
-                    <tr key={s.name} className="border-t border-border/60 hover:bg-secondary/40">
-                      <td className="px-4 py-3 font-medium">{s.name}</td>
-                      <td className="px-4 py-3 text-muted-foreground">{s.cat}</td>
-                      <td className="px-4 py-3">
-                        {s.verified ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
-                            <ShieldCheck className="h-3 w-3" /> Verified
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
-                            Pending
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-4 py-3 text-right">
-                        <a href="#" className="inline-flex items-center gap-1 text-brand-600 hover:underline">
-                          Open <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Section>
+          {/* Sources / Resources */}
+          <ReportResources sources={sources} title="Verified Resources & Citations" />
 
           {/* Follow-up */}
           <Section title="Ask a follow-up">
